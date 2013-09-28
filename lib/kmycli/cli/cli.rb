@@ -3,13 +3,15 @@ require 'pry'
 module KMyCLI
   module CLI
     class CLI < Thor
-      attr_accessor :settings
+      attr_accessor :settings, :o
     
       method_option "config-file", :default => File.expand_path(File.join("~", ".kmycli"))
       method_option "database"
       def initialize(*args)
         super(*args)
       
+        self.o = OpenStruct.new(options)
+        
         self.settings = Settings.new(File.expand_path(options['config-file']))
         settings.merge!(options.select { |k, v| %w(
           database

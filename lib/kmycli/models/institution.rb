@@ -1,8 +1,10 @@
 module KMyCLI
-  class Institution < ActiveRecord::Base
-    self.table_name = "kmmInstitutions"
+  module Models
+    class Institution < ActiveRecord::Base
+      self.table_name = "kmmInstitutions"
     
-    has_many :transactions, :foreign_key => "bankId"
-    has_many :accounts, :foreign_key => "institutionId"
+      has_many :transactions, :foreign_key => "bankId"
+      has_many :accounts, :foreign_key => "institutionId"
+    end
   end
 end

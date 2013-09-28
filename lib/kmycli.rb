@@ -2,8 +2,10 @@ require 'sqlite3'
 require 'active_record'
 require 'thor'
 require 'inifile'
+require 'ostruct'
+require 'awesome_print' # TODO require only in development
 
-require 'kmycli/ext/eval_frac.rb'
+require 'kmycli/ext/fraction.rb'
 require 'kmycli/version'
 
 module KMyCLI
@@ -14,13 +16,15 @@ module KMyCLI
   autoload :DB,             File.join(LIBRARY_PATH, 'db')
   autoload :Settings,       File.join(LIBRARY_PATH, 'settings')
   
-  autoload :Price,          File.join(MODELS_PATH, 'price')
-  autoload :Transaction,    File.join(MODELS_PATH, 'transaction')
-  autoload :Split,          File.join(MODELS_PATH, 'split')
-  autoload :Currency,       File.join(MODELS_PATH, 'currency')
-  autoload :Account,        File.join(MODELS_PATH, 'account')
-  autoload :Payee,          File.join(MODELS_PATH, 'payee')
-  autoload :Institution,    File.join(MODELS_PATH, 'institution')
+  module Models
+    autoload :Price,          File.join(MODELS_PATH, 'price')
+    autoload :Transaction,    File.join(MODELS_PATH, 'transaction')
+    autoload :Split,          File.join(MODELS_PATH, 'split')
+    autoload :Currency,       File.join(MODELS_PATH, 'currency')
+    autoload :Account,        File.join(MODELS_PATH, 'account')
+    autoload :Payee,          File.join(MODELS_PATH, 'payee')
+    autoload :Institution,    File.join(MODELS_PATH, 'institution')
+  end
   
   module CLI
     autoload :CLI,          File.join(CLI_PATH, 'cli')

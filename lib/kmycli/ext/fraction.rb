@@ -1,3 +1,9 @@
+class Float
+  def to_fraction_s
+    "#{numerator}/#{denominator}"
+  end
+end
+
 class String
   def fraction?
     !!match(/^-?\d+(\/)-?\d+$/)

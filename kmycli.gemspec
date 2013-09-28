@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "awesome_print"
   
   spec.add_runtime_dependency "thor"
   spec.add_runtime_dependency "sqlite3"

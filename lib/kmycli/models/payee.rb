@@ -1,7 +1,9 @@
 module KMyCLI
-  class Payee < ActiveRecord::Base
-    self.table_name = "kmmPayees"
+  module Models
+    class Payee < ActiveRecord::Base
+      self.table_name = "kmmPayees"
     
-    has_many :splits, :foreign_key => "payeeId"
+      has_many :splits, :foreign_key => "payeeId"
+    end
   end
 end
