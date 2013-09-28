@@ -5,7 +5,8 @@ module KMyCLI
     class CLI < Thor
       attr_accessor :settings, :o
     
-      method_option "config-file", :default => File.expand_path(File.join("~", ".kmycli"))
+      method_option "config-file",
+                    :default => File.expand_path(File.join("~", ".kmycli"))
       method_option "database"
       def initialize(*args)
         super(*args)
@@ -40,7 +41,8 @@ module KMyCLI
         puts "KMyCLI #{VERSION}"
       end
       
-      register Price, :price, "price", "Price functions"
+      register Price, :price, "price", "Price commands"
+      register Config, :config, "config", "Configuration commands"
     end
   end
 end

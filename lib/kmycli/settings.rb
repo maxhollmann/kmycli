@@ -12,6 +12,15 @@ module KMyCLI
       self.settings.merge!(options.reject { |k, v| v.nil? })
     end
     
+    def all
+      settings
+    end
+    
+    def set(key, val)
+      inifile['global'][key] = val
+      inifile.write
+    end
+    
     def method_missing(key, *args)
       key = key.to_s
       if key.end_with? "="

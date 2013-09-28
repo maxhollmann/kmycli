@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'sqlite3'
 require 'active_record'
 require 'thor'
@@ -29,6 +30,7 @@ module KMyCLI
   module CLI
     autoload :CLI,          File.join(CLI_PATH, 'cli')
     autoload :Price,        File.join(CLI_PATH, 'price')
+    autoload :Config,       File.join(CLI_PATH, 'config')
   end
 end
 

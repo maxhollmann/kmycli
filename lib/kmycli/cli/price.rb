@@ -11,9 +11,12 @@ module KMyCLI
       end
       
       desc 'list', 'List prices'
-      method_option 'from', :aliases => "-f"
-      method_option 'to', :aliases => "-t"
-      method_option 'date', :aliases => "-d"
+      method_option 'from',
+                    :aliases => "-f"
+      method_option 'to',
+                    :aliases => "-t"
+      method_option 'date',
+                    :aliases => "-d"
       def list
         prices = Models::Price.all
         prices = prices.from_currency(o.from) if o.from.present?
@@ -23,12 +26,19 @@ module KMyCLI
       end
       
       desc 'add', 'Add conversion rate for a currency to another currency'
-      method_option 'from', :aliases => "-f"
-      method_option 'to', :aliases => "-t"
-      method_option 'price', :aliases => "-p"
-      method_option 'date', :aliases => "-d"
-      method_option 'no-inverse', :type => :boolean, :aliases => "-n"
-      method_option 'force', :type => :boolean
+      method_option 'from',
+                    :aliases => "-f"
+      method_option 'to',
+                    :aliases => "-t"
+      method_option 'price',
+                    :aliases => "-p"
+      method_option 'date',
+                    :aliases => "-d"
+      method_option 'no-inverse',
+                    :aliases => "-n",
+                    :type => :boolean
+      method_option 'force',
+                    :type => :boolean
       def add
         o.from ||= ask("From currency:")
         o.to ||= ask("To currency:")
@@ -60,11 +70,16 @@ module KMyCLI
       end
       
       desc 'delete', 'Delete conversion rates matching the options'
-      method_option 'from', :aliases => "-f"
-      method_option 'to', :aliases => "-t"
-      method_option 'price', :aliases => "-p"
-      method_option 'date', :aliases => "-d"
-      method_option 'force', :type => :boolean
+      method_option 'from',
+                    :aliases => "-f"
+      method_option 'to',
+                    :aliases => "-t"
+      method_option 'price',
+                    :aliases => "-p"
+      method_option 'date',
+                    :aliases => "-d"
+      method_option 'force',
+                    :type => :boolean
       def delete
         prices = Models::Price.all
         prices = prices.where(:fromId => o.from) if o.from.present?
