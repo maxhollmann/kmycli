@@ -21,12 +21,8 @@ module KMyCLI
         unless DB.connect File.expand_path(settings.database)
           raise Thor::Error.new("Could not open database '#{settings.database}'")
         end
-      end
-    
-      desc 'test', 'Test task'
-      def test
-        p = Currency.find('BTC').prices_from.to_currency('EUR')
-        puts p.map { |p| p.price.eval_fraction }
+        
+        settings.default_currency = Models::KVPair.get('kmm-baseCurrency')
       end
     
       desc 'console', 'Open a console'
@@ -42,6 +38,7 @@ module KMyCLI
       end
       
       register Price, :price, "price", "Price commands"
+      register Transaction, :transaction, "transaction", "Transaction commands"
       register Config, :config, "config", "Configuration commands"
     end
   end

@@ -18,18 +18,20 @@ module KMyCLI
   autoload :Settings,       File.join(LIBRARY_PATH, 'settings')
   
   module Models
-    autoload :Price,          File.join(MODELS_PATH, 'price')
-    autoload :Transaction,    File.join(MODELS_PATH, 'transaction')
-    autoload :Split,          File.join(MODELS_PATH, 'split')
-    autoload :Currency,       File.join(MODELS_PATH, 'currency')
-    autoload :Account,        File.join(MODELS_PATH, 'account')
-    autoload :Payee,          File.join(MODELS_PATH, 'payee')
-    autoload :Institution,    File.join(MODELS_PATH, 'institution')
+    autoload :Price,        File.join(MODELS_PATH, 'price')
+    autoload :Transaction,  File.join(MODELS_PATH, 'transaction')
+    autoload :Split,        File.join(MODELS_PATH, 'split')
+    autoload :Currency,     File.join(MODELS_PATH, 'currency')
+    autoload :Account,      File.join(MODELS_PATH, 'account')
+    autoload :Payee,        File.join(MODELS_PATH, 'payee')
+    autoload :Institution,  File.join(MODELS_PATH, 'institution')
+    autoload :KVPair,       File.join(MODELS_PATH, 'kv_pair')
   end
   
   module CLI
     autoload :CLI,          File.join(CLI_PATH, 'cli')
     autoload :Price,        File.join(CLI_PATH, 'price')
+    autoload :Transaction,  File.join(CLI_PATH, 'transaction')
     autoload :Config,       File.join(CLI_PATH, 'config')
   end
 end
