@@ -56,6 +56,7 @@ module KMyCLI
         o = [
           "Date:      #{postDate}",
           "Payee:     #{ms.payee.name}",
+          "Account:   #{ms.account.path}",
           "Total:     #{ms.value} #{currencyId}"
         ]
         splits[1..-1].each do |s|
