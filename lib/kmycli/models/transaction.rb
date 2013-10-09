@@ -7,9 +7,13 @@ module KMyCLI
       belongs_to :institution, :foreign_key => "bankId"
       belongs_to :currency, :foreign_key => "currencyId"
       
+      validates :currencyId, :presence => true
+      validates :entryDate, :presence => true
+      validates :postDate, :presence => true
+      
       # Needs to be called before add_split
       def build_main_split(account, payee, date = Date.today, memo = nil)
-        throw "Transaction has splits already. Call this before adding other splits." if splits.any?
+        raise "Transaction has splits already. Call this before adding other splits" if splits.any?
         splits.build(
           :splitId   => 0,
           :payeeId   => payee.id,
@@ -20,7 +24,7 @@ module KMyCLI
       end
       
       def add_split(category, amount, memo = nil)
-        throw "build_main_split needs to be called before adding other splits." if splits.empty?
+        raise "build_main_split needs to be called before adding other splits" if splits.empty?
         ms = splits.first
         splits.build(
           :splitId   => splits.size,
@@ -33,17 +37,19 @@ module KMyCLI
       end
       
       def prepare_for_save
-        self.id ||= Transaction.next_free_id
-        self.entryDate ||= Date.today
-        self.postDate ||= Date.today
-        self.txType ||= 'N'
-        
         ms = splits.first
         ms.value = - splits[1..-1].map { |s| s.value.is_a?(String) && s.value.fraction? ? s.value.eval_fraction : s.value.to_f }.sum
+
+        self.entryDate ||= Date.today
+        self.postDate ||= ms.postDate || Date.today
+        self.txType ||= 'N'
       end
       
       before_save do
         prepare_for_save
+        if id.blank?
+          self.id = Transaction.next_free_id
+        end
       end
       
       def self.next_free_id

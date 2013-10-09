@@ -10,7 +10,7 @@ module KMyCLI
       end
       def self.search!(query)
         r = search(query)
-        throw "Could not find any payee matching '#{query}'." if r.none?
+        raise "Could not find any payee matching '#{query}'" if r.none?
         r
       end
       def self.search_one(query)
