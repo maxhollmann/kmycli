@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = KMyCLI::VERSION
   spec.authors       = ["Max Hollmann"]
   spec.email         = ["mail@maxhollmann.de"]
-  spec.description   = %q{Desc}
-  spec.summary       = %q{Sum}
+  spec.description   = %q{Command line interface for the SQLite3 database of KMyMoney}
+  spec.summary       = %q{Command line interface for the SQLite3 database of KMyMoney}
   spec.homepage      = ""
   spec.license       = "MIT"
 
